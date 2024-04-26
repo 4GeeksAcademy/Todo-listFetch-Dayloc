@@ -10,3 +10,47 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+.container{
+    width: 300px;
+    background-color: rgb(254, 216, 161);
+    border:1px solid rgb(154, 154, 154);
+    box-shadow:  4px 4px 4px 4px;
+}
+body{
+    margin-top: 100px;
+}
+ul li{
+    border:1px solid gray;
+    list-style: none;
+    padding: 5px;
+}
+h1{
+    text-align: center;
+}
+input{
+    border: nobe;
+    width: 100%;
+}
+ul{
+    padding: 0;
+    margin-bottom: 0;
+}
+
+p{
+    color:rgb(0, 30, 255)
+}
+span{
+    color:red
+}
+
+button{
+    border-radius: 100%;
+    background-color: rgb(255, 255, 255);
+  }
+
+.list {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 6px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;   
+}
