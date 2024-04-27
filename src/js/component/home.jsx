@@ -1,61 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 //create your first component
 const Home = () => {
   const [task,setTask] = useState('');
   const [tasks, setTasks] = useState([]);
-  const [user,setUser] = useState([]);
-
-
-  const createUser= async()=>{
-	await fetch('https://playground.4geeks.com/todo/users/Dayloc',{
-		method: 'POST'
-	}).then(resp=>{
-		if(resp.ok){
-			alert('Se ha creado el usuario corecctamente')
-			getUser();
-		}
-	})
-  }
-  useEffect(()=>{
-	getUser();
-	createUser();
-
-  },[])
-  const createTask = async()=>{
-	await fetch('https://playground.4geeks.com/todo/todos/Dayloc',{
-	method: 'POST',
-	body: JSON.stringify({
-		"label": task,
-		"is_done": false
-	  })
-	}).then (resp=>{
-		if(resp.ok){
-			return resp.json()
-		}
-	}).then(respJson=>{
-		const newUser={
-			...user,
-			todos:[...userTaks,respJson]}
-	})
-	
-  }
-  
-  const getUser= async()=>{
-	await fetch('https://playground.4geeks.com/todo/users/Dayloc').then(resp=>{
-		if(!resp.ok){
-			createUser()
-		}
-		return resp.json()
-	}).then(user=>setUser(user))
-  }
 
   
  const validateTask = (task) => {
  if (!task || !task.trim()) {
      alert("El Campo de tarea es obligatorio.");
   }
-    createTask( task);
+    setTasks([...tasks, task]);
    
     setTask('');
  }
@@ -64,7 +19,6 @@ const Home = () => {
     const newTasks = tasks.filter((item) => item !== task);
     setTasks([...newTasks]);
     };
-	console.log(user)
   return (
     <div className="container text-center">
       <h1>Lista de Tareas</h1>
@@ -80,7 +34,7 @@ const Home = () => {
       <div className="con3 mt-3">
       <ul >
           {
-            user.todos.map((item,index) => <li className="list"  key={index}>{index+1} .    {item} <button class="btn-close text-danger bg-danger"  onClick={()=> delateTask(item)}></button></li>)
+            tasks.map((item,index) => <li className="list"  key={index}>{index+1} .    {item} <button class="btn-close text-danger bg-danger"  onClick={()=> delateTask(item)}></button></li>)
           }     
       </ul>
       </div>
